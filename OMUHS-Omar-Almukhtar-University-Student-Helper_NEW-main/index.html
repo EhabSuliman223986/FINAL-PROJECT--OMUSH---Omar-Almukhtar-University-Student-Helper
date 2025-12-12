@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>OMUHS - Student Helper</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- لوحة الإعلانات -->
+    <style>
+        .ann-box {
+            width: 92%;
+            margin: 20px auto;
+            background: #001d3d;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+            position: relative;
+            color: white;
+            font-family: "Tahoma";
+        }
+
+        .ann-header {
+            background: #ffb703;
+            color: #000;
+            font-weight: bold;
+            font-size: 22px;
+            padding: 8px 0;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .ann-slider {
+            height: 130px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            text-align: center;
+            font-size: 21px;
+            line-height: 1.7;
+            animation: fadeIn 1s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .ann-ticker {
+            width: 100%;
+            background: #003566;
+            padding: 8px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            position: relative;
+            font-size: 18px;
+        }
+
+        .ann-ticker span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: ticker 30s linear infinite;
+        }
+
+        @keyframes ticker {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- شاشة البداية -->
+    <div class="splash" id="splash">
+        <img src="logo.png" class="splash-logo" />
+        <h1 class="splash-title">OMUHS</h1>
+        <p class="splash-sub">helper student</p>
+    </div>
+
+    <!-- شاشة تسجيل الدخول -->
+    <div class="login-page" id="loginPage">
+        <div class="login-start" id="startBtn">اضغط هنا للبدء</div>
+
+        <div class="login-box" id="loginBox">
+            <img src="logo.png" class="login-logo" />
+            <div class="input-field">
+                <input type="text" id="studentID" required />
+                <label>رقمك الدراسي</label>
+            </div>
+            <button id="loginBtn">دخول</button>
+            <button id="modeBtn">تغيير الوضع</button>
+        </div>
+    </div>
+
+    <!-- صفحة الأقسام -->
+    <div class="departments-page" id="departmentsPage">
+
+        <!-- لوحة الإعلانات -->
+        <div class="ann-box">
+            <div class="ann-header">إعلان عاجل</div>
+            <div id="annSlider" class="ann-slider"></div>
+            <div class="ann-ticker">
+                <span id="tickerText"></span>
+            </div>
+        </div>
+
+        <h1 class="page-title">أقسام كلية العلوم</h1>
+
+        <div class="departments-container">
+            <div class="department active" data-dept="cs">
+                <a href="#subjectsPage" style="text-decoration: none; color: inherit;">
+                    علوم الحاسوب
+                </a>
+            </div>
+            <div class="department coming">علوم الحيوان</div>
+            <div class="department coming">علوم البحار</div>
+            <div class="department coming">الرياضيات</div>
+            <div class="department coming">الفيزياء</div>
+            <div class="department coming">الكيمياء</div>
+        </div>
+
+    </div>
+
+    <!-- صفحة المواد -->
+    <div class="subjects-page" id="subjectsPage">
+
+        <h1 class="page-title">Computer Science Subjects</h1>
+
+        <div class="subjects-container">
+
+            <div class="subject">
+                <h2>Internet Programming</h2>
+                <a href="assets/computer_science/internet_programming/1.pdf" target="_blank">درس 1</a><br>
+                <a href="assets/computer_science/internet_programming/2.pdf" target="_blank">درس 2</a><br>
+                <a href="assets/computer_science/internet_programming/3.pdf" target="_blank">درس 3</a>
+            </div>
+
+            <div class="subject">
+                <h2>Data Structures</h2>
+                <a href="assets/computer_science/data_structures/1.pdf" target="_blank">درس 1</a><br>
+                <a href="assets/computer_science/data_structures/2.pdf" target="_blank">درس 2</a><br>
+                <a href="assets/computer_science/data_structures/3.pdf" target="_blank">درس 3</a>
+            </div>
+
+            <div class="subject">
+                <h2>System Analysis & Design</h2>
+                <a href="assets/computer_science/system__analyzing_and_design/1.pdf" target="_blank">درس 1</a><br>
+                <a href="assets/computer_science/system__analyzing_and_design/2.pdf" target="_blank">درس 2</a><br>
+                <a href="assets/computer_science/system__analyzing_and_design/3.pdf" target="_blank">درس 3</a>
+            </div>
+
+            <!-- باقي المواد تظهر قريباً -->
+            <div class="subject coming"><h2>احتمالات</h2><p>قريبًا</p></div>
+            <div class="subject coming"><h2>أنظمة تشغيل</h2><p>قريبًا</p></div>
+            <div class="subject coming"><h2>بناء مترجمات</h2><p>قريبًا</p></div>
+            <div class="subject coming"><h2>تصميم برامج</h2><p>قريبًا</p></div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- سكربت لوحة الإعلانات -->
+    <script>
+        const announcementsMain = [
+            "على الطالب صاحب الرقم الدراسي 223986الحضور أمام المجلس التأديبي يوم 15-12-2025.",
+            "تنبيه لطلبة مقرر  برمجة الإنترنت  : الامتحان النهائي يوم   13-01-2026  الساعة 10 صباحاً.",
+            "فتح التسجيل في دورة الأمن السيبراني. المقاعد محدودة.",
+            "تنويه: سيتم إيقاف النظام الأكاديمي الخميس من 12 ليلاً إلى 6 صباحاً.",
+            "على جميع الطلبة تحديث بياناتهم قبل 31-12-2025."
+        ];
+
+        const tickerNews = [
+            "إعلان جديد: تم توفير مراجع إضافية في مكتبة الكلية.",
+            "خبر هام: بداية تسجيل مواد الفصل الربيعي الأسبوع القادم.",
+            "عاجل: اجتماع مهم لطلبة برمجه انترنت يوم الأربعاء.",
+            "تنبيه: يرجى متابعة الموقع باستمرار لآخر المستجدات.",
+            "خدمة جديدة: إضافة خانة للواجبات الأسبوعية داخل النظام."
+        ];
+
+        let index = 0;
+        const slider = document.getElementById("annSlider");
+        const ticker = document.getElementById("tickerText");
+
+        function showAnnouncement() {
+            slider.style.opacity = 0;
+            setTimeout(() => {
+                slider.innerHTML = announcementsMain[index];
+                slider.style.animation = "none";
+                void slider.offsetWidth;
+                slider.style.animation = "fadeIn 1s ease forwards";
+                index = (index + 1) % announcementsMain.length;
+            }, 300);
+        }
+
+        showAnnouncement();
+        setInterval(showAnnouncement, 6000);
+        ticker.innerHTML = tickerNews.join("   |   ");
+    </script>
+
+</body>
+
+</html>
